@@ -1,1 +1,4 @@
 *.DS_Store
+
+#carpetas de npm:
+node_modules/

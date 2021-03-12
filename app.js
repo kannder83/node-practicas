@@ -34,7 +34,7 @@ console.log(objeto.getNombre());
 // Ejercicio #3
 // Se puede crear un servidor HTML:
 
-const http = require("http");
+//const http = require("http");
 
 /*
 http
@@ -60,6 +60,7 @@ server.listen(3000, function () {
 */
 //Ejercicio #4 - Crear eventos:
 
+/*
 const EventEmitter = require("events");
 const emiter = new EventEmitter();
 
@@ -70,4 +71,48 @@ emiter.on("miEvento", function (args) {
 emiter.emit("miEvento", {
   id: 1,
   mensaje: "Hola",
+});
+*/
+
+const express = require("express");
+const server = express();
+
+server.get("/", function (req, res) {
+  res.send("Express y nodejs.");
+  res.end();
+});
+
+//Arreglo de Objetos
+server.get("/usuarios", function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+  res.end(
+    JSON.stringify([
+      {
+        nombre: "Alejandro",
+        edad: 38,
+      },
+      {
+        nombre: "Daniela",
+        edad: 23,
+      },
+      {
+        nombre: "Coco",
+        edad: 2,
+      },
+    ])
+  );
+});
+
+server.get("/usuario", function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+  res.end(
+    JSON.stringify({
+      nombre: "Alejandro",
+      edad: 38,
+    })
+  );
+});
+
+server.listen(3000, function () {
+  console.log("server running usigin express...");
 });
